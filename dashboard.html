@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<script>
+if(localStorage.getItem("login") !== "true"){
+    alert("Please login first ❌");
+    window.location.href = "login.html";
+}
+</script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background: #2E7D32;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background: #4CAF50;
+}
+
+/* Main content */
+.main {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.header {
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.cards {
+    margin-top: 20px;
+}
+
+/* Cards */
+.card {
+    display: inline-block;
+    width: 220px;
+    padding: 20px;
+    margin: 15px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: #4CAF50;
+}
+
+/* BUTTON STYLE */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #388E3C;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="career.html">Career</a>
+    <a href="login.html">Logout</a>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<div class="header">
+    <h1>Welcome 👋</h1>
+    <p>Explore jobs and choose your career path</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+    <h3>💻 Jobs</h3>
+    <p>Explore job & internship opportunities</p>
+    <a href="jobs.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+    <h3>🧠 Career</h3>
+    <p>Get career guidance based on interest</p>
+    <a href="career.html" class="btn">Open</a>
+</div>
+
+<div class="card">
+    <h3>👤 Profile</h3>
+    <p>View your details</p>
+    <a href="#" class="btn">Open</a>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

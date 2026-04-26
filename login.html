@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Career Path Finder</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+}
+
+.container {
+    width: 350px;
+    margin: 80px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+/* COMMON WIDTH */
+.input-box {
+    width: 90%;
+    margin: 10px auto;
+    position: relative;
+}
+
+/* INPUT STYLE */
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* checkbox inside password */
+.input-box label {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-box input[type="checkbox"] {
+    transform: scale(0.8);
+    cursor: pointer;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #388E3C;
+}
+
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+
+<form onsubmit="return loginUser()">
+
+<!-- Username -->
+<div class="input-box">
+    <input type="text" id="username" placeholder="Username" required>
+</div>
+
+<!-- Password -->
+<div class="input-box">
+    <input type="password" id="password" placeholder="Password" required>
+    <label>
+        <input type="checkbox" onclick="togglePassword()">
+    </label>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+<p>
+Admin? <a href="admin-login.html">Login here</a>
+</p>
+
+<div class="links">
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+</div>
+
+</div>
+
+<script>
+function togglePassword() {
+    let p = document.getElementById("password");
+    p.type = (p.type === "password") ? "text" : "password";
+}
+
+function loginUser() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if (user !== "" && pass !== "") {
+
+        // 🔥 IMPORTANT FIX
+        localStorage.setItem("login", "true");
+
+        alert("Login Successful ✅");
+        window.location.href = "dashboard.html";
+        return false;
+    } else {
+        alert("Invalid Login ❌");
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>

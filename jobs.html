@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Jobs & Internships</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f4f6f9;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 250px;
+            background: white;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #388E3C;
+        }
+
+        /* logout button */
+        .logout-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            padding: 8px 12px;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Top Companies</h1>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="images/accenture.png">
+            <h3>Accenture</h3>
+           <a href="https://www.accenture.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/infosys.jpg">
+            <h3>Infosys</h3>
+            <a href="https://www.infosys.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/capgemini.png">
+            <h3>Capgemini</h3>
+            <a href="https://www.capgemini.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/ibm.png">
+            <h3>IBM</h3>
+            <a href="https://www.ibm.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/ey.png">
+            <h3>EY</h3>
+            <a href="https://www.ey.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/tcs.png">
+            <h3>TCS</h3>
+            <a href="https://www.tcs.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/wipro.png">
+            <h3>Wipro</h3>
+            <a href="https://www.wipro.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/hcl.png">
+            <h3>HCLTech</h3>
+            <a href="https://www.hcltech.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/cognizant.png">
+            <h3>Cognizant</h3>
+            <a href="https://www.cognizant.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/deloitte.png">
+            <h3>Deloitte</h3>
+            <a href="https://www.deloitte.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/pwc.png">
+            <h3>PwC</h3>
+            <a href="https://www.pwc.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/techmahindra.png">
+            <h3>Tech Mahindra</h3>
+            <a href="https://www.techmahindra.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/oracle.png">
+            <h3>Oracle</h3>
+            <a href="https://www.oracle.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/globant.png">
+            <h3>Globant</h3>
+            <a href="https://www.globant.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+        <div class="card">
+            <img src="images/softvision.png">
+            <h3>Softvision</h3>
+            <a href="https://www.softvision.com" target="_blank" class="btn">Apply Now</a>
+        </div>
+
+    </div>
+
+    <!-- Career Guidance Box -->
+    <div style="
+    text-align:center;
+    margin:40px auto;
+    padding:20px;
+    width:300px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+">
+
+        <h3>Not satisfied with these jobs? 🤔</h3>
+        <p>Get better suggestions based on your profile</p>
+
+        <a href="career.html" style="
+    display:inline-block;
+    padding:10px 15px;
+    background:#c98dfa;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;">
+            Go to Career Guidance
+        </a>
+
+    </div>
+
+
+
+    <script>
+        //login check
+        function applyJob(url) {
+            let loggedIn = localStorage.getItem("loggedIn");
+
+            if (loggedIn === "true") {
+                window.open(url, "_blank");
+            } else {
+                alert("Please login first ❌");
+                window.location.href = "login.html";
+            }
+        }
+        //logout
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            alert("Logged out successfully");
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+
+</html>

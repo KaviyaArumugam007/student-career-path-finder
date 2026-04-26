@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+
+<!-- 🔐 PROTECTION -->
+<script>
+if(localStorage.getItem("admin") !== "true"){
+    alert("Access Denied ❌");
+    window.location.href = "admin-login.html";
+}
+</script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+}
+
+.container {
+    width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 { color: #4CAF50; }
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover { background: #388E3C; }
+
+.logout { background: red; }
+
+.card {
+    background: #f9f9f9;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Admin Panel</h2>
+
+<input type="text" id="company" placeholder="Company Name">
+<input type="text" id="role" placeholder="Job Role">
+<input type="text" id="qualification" placeholder="Qualification">
+
+<button onclick="addJob()">Add Job</button>
+<button class="logout" onclick="logout()">Logout</button>
+
+<!-- ✅ USER COUNT -->
+<h3>Total Registered Users: <span id="userCount">0</span></h3>
+
+<!-- ✅ USER LIST -->
+<h3>Registered Users</h3>
+<div id="userList"></div>
+
+<!-- ✅ JOB LIST -->
+<h3>Added Jobs</h3>
+<div id="output"></div>
+
+</div>
+
+<script>
+
+// 🔥 LOAD USERS
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+// show count
+document.getElementById("userCount").innerText = users.length;
+
+// show user list
+let userList = document.getElementById("userList");
+
+users.forEach(u => {
+    userList.innerHTML += `
+    <div class="card">
+        <p><b>${u.name}</b></p>
+        <p>${u.email}</p>
+        <p>${u.degree}</p>
+        <p>${u.skills}</p>
+    </div>
+    `;
+});
+
+
+// 🔥 LOAD JOBS
+let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+displayJobs();
+
+// 🔥 ADD JOB
+function addJob(){
+
+let c = document.getElementById("company").value;
+let r = document.getElementById("role").value;
+let q = document.getElementById("qualification").value;
+
+if(c==="" || r==="" || q===""){
+    alert("Fill all fields ❗");
+    return;
+}
+
+let newJob = {
+    company: c,
+    role: r,
+    qualification: q
+};
+
+jobs.push(newJob);
+localStorage.setItem("jobs", JSON.stringify(jobs));
+
+displayJobs();
+
+// clear inputs
+document.getElementById("company").value = "";
+document.getElementById("role").value = "";
+document.getElementById("qualification").value = "";
+}
+
+// 🔥 DISPLAY JOBS
+function displayJobs(){
+
+let output = document.getElementById("output");
+output.innerHTML = "";
+
+jobs.forEach(job => {
+    output.innerHTML += `
+    <div class="card">
+        <h4>${job.company}</h4>
+        <p>Role: ${job.role}</p>
+        <p>Qualification: ${job.qualification}</p>
+        <p style="color:green;">Hiring: Open ✅</p>
+    </div>
+    `;
+});
+}
+
+// 🔥 LOGOUT
+function logout(){
+localStorage.removeItem("admin");
+window.location.href = "admin-login.html";
+}
+
+</script>
+
+</body>
+</html>

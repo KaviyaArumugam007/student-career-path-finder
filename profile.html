@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.card {
+    width: 320px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card p {
+    margin: 10px 0;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    color: #4CAF50;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>User Profile</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;">My Details</h2>
+
+<p><span class="label">Name:</span> <span class="value" id="name"></span></p>
+<p><span class="label">Email:</span> <span class="value" id="email"></span></p>
+<p><span class="label">Username:</span> <span class="value" id="username"></span></p>
+<p><span class="label">Degree:</span> <span class="value" id="degree"></span></p>
+</div>
+
+</div>
+
+<script>
+let userData = localStorage.getItem("user");
+
+if(userData){
+    let user = JSON.parse(userData);
+
+    document.getElementById("name").innerText = user.name || "-";
+    document.getElementById("email").innerText = user.email || "-";
+    document.getElementById("username").innerText = user.username || "-";
+    document.getElementById("degree").innerText = user.degree || "-";
+}
+else {
+    document.querySelector(".card").innerHTML =
+    "<h3>No user found ❌<br>Please register/login first</h3>";
+}
+</script>
+
+</body>
+</html>

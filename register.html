@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register - Career Path Finder</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+}
+
+.container {
+    width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 { color: #4CAF50; }
+
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+select { appearance: none; }
+
+.password-wrapper {
+    width: 90%;
+    margin: 8px auto;
+    position: relative;
+}
+
+.password-wrapper input { width: 100%; }
+
+.password-wrapper label {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.password-wrapper input[type="checkbox"] {
+    transform: scale(0.8);
+    cursor: pointer;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover { background: #388E3C; }
+
+.links a { color: #4CAF50; text-decoration: none; }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Create Account</h2>
+
+<form onsubmit="return registerUser()">
+
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="text" id="username" placeholder="Username" required>
+
+<div class="password-wrapper">
+    <input type="password" id="password" placeholder="Password" required>
+    <label><input type="checkbox" onclick="togglePassword()"></label>
+</div>
+
+<div class="password-wrapper">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <label><input type="checkbox" onclick="toggleConfirm()"></label>
+</div>
+
+<select id="degree" required>
+
+<option value="">Select Degree</option>
+
+<optgroup label="Computer & IT">
+<option>BCA</option>
+<option>MCA</option>
+<option>B.Sc Computer Science</option>
+<option>B.Sc IT</option>
+<option>B.Tech CSE</option>
+<option>B.Tech IT</option>
+</optgroup>
+
+<optgroup label="Engineering">
+<option>B.E Mechanical</option>
+<option>B.E Civil</option>
+<option>B.E Electrical</option>
+<option>B.E ECE</option>
+<option>B.E EEE</option>
+</optgroup>
+
+<optgroup label="Science">
+<option>B.Sc Mathematics</option>
+<option>B.Sc Physics</option>
+<option>B.Sc Chemistry</option>
+<option>B.Sc Biotechnology</option>
+<option>B.Sc Microbiology</option>
+</optgroup>
+
+<optgroup label="Commerce & Management">
+<option>B.Com</option>
+<option>B.Com CA</option>
+<option>B.Com Accounting & Finance</option>
+<option>BBA</option>
+<option>BBM</option>
+<option>MBA</option>
+</optgroup>
+
+<optgroup label="Arts & Humanities">
+<option>BA English</option>
+<option>BA Tamil</option>
+<option>BA Economics</option>
+<option>BA History</option>
+<option>BA Political Science</option>
+</optgroup>
+
+</select>
+
+<input type="text" id="skills" placeholder="Skills (e.g., Python, Java)" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+<div class="links">
+<p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+</div>
+
+<script>
+function togglePassword() {
+    let p = document.getElementById("password");
+    p.type = (p.type === "password") ? "text" : "password";
+}
+
+function toggleConfirm() {
+    let c = document.getElementById("confirmPassword");
+    c.type = (c.type === "password") ? "text" : "password";
+}
+
+function registerUser() {
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
+let confirmPassword = document.getElementById("confirmPassword").value;
+let degree = document.getElementById("degree").value;
+let skills = document.getElementById("skills").value;
+
+// password check
+if (password !== confirmPassword) {
+    alert("Passwords do not match ❌");
+    return false;
+}
+
+// 🔥 NEW USER OBJECT
+let newUser = {
+    name, email, username, password, degree, skills
+};
+
+// 🔥 GET OLD USERS
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+// 🔥 ADD NEW USER
+users.push(newUser);
+
+// 🔥 SAVE ALL USERS
+localStorage.setItem("users", JSON.stringify(users));
+
+// (optional for profile page)
+localStorage.setItem("user", JSON.stringify(newUser));
+
+alert("Registration Successful ✅");
+
+// redirect
+window.location.href = "login.html";
+
+return false;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Career Guidance</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+select, input, button {
+    width: 260px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+select:invalid {
+    color: gray;
+}
+
+.card {
+    background: white;
+    width: 300px;
+    margin: 15px auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Career Guidance</h1>
+</header>
+
+<div class="container">
+
+<h2>Your Details</h2>
+
+<!-- Degree -->
+<select id="degree" required>
+  <option value="" disabled selected hidden>Select Degree</option>
+
+  <optgroup label="Computer & IT">
+    <option value="it">BCA</option>
+    <option value="it">MCA</option>
+    <option value="it">B.Sc Computer Science</option>
+    <option value="it">B.Sc IT</option>
+    <option value="it">B.Tech CSE</option>
+    <option value="it">B.Tech IT</option>
+  </optgroup>
+
+  <optgroup label="Engineering">
+    <option value="eng">B.E Mechanical</option>
+    <option value="eng">B.E Civil</option>
+    <option value="eng">B.E Electrical</option>
+    <option value="eng">B.E ECE</option>
+    <option value="eng">B.E EEE</option>
+  </optgroup>
+
+  <optgroup label="Science">
+    <option value="sci">B.Sc Mathematics</option>
+    <option value="sci">B.Sc Physics</option>
+    <option value="sci">B.Sc Chemistry</option>
+    <option value="sci">B.Sc Biotechnology</option>
+    <option value="sci">B.Sc Microbiology</option>
+  </optgroup>
+
+  <optgroup label="Commerce & Management">
+    <option value="com">B.Com</option>
+    <option value="com">B.Com CA</option>
+    <option value="com">BBA</option>
+    <option value="com">MBA</option>
+  </optgroup>
+
+  <optgroup label="Arts">
+    <option value="art">BA English</option>
+    <option value="art">BA Tamil</option>
+    <option value="art">BA Economics</option>
+    <option value="art">BA History</option>
+  </optgroup>
+</select>
+<!-- Skills -->
+<input type="text" id="skills" placeholder="Your Skills">
+
+<br>
+
+<button onclick="getSuggestion()">Get Career Suggestion</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+// ✅ Auto Fill from LocalStorage
+window.onload = function(){
+
+    let savedDegree = localStorage.getItem("degree");
+    let savedSkills = localStorage.getItem("skills");
+
+    if(savedDegree){
+        document.getElementById("degree").value = savedDegree;
+    }
+
+    if(savedSkills){
+        document.getElementById("skills").value = savedSkills;
+    }
+}
+
+// 🎯 Main Function
+function getSuggestion(){
+
+    let d = document.getElementById("degree").value;
+    let s = document.getElementById("skills").value;
+    s = s ? s.toLowerCase() : "";
+
+    // ❗ Validation
+    if(!d){
+        alert("Please select your degree ❗");
+        return;
+    }
+
+    // 💾 Save user data
+    localStorage.setItem("degree", d);
+    localStorage.setItem("skills", s);
+
+    let output = "";
+
+    // 💻 IT
+    if(d === "it"){
+        output += `
+        <div class="card">
+        <h3>Software Developer</h3>
+        <p>Skills: C,Java, Python, Web Development,C++</p>
+        <p>Companies: TCS, Infosys, Wipro</p>
+        </div>
+
+        <div class="card">
+        <h3>Data Analyst</h3>
+        <p>Skills: Python, SQL</p>
+        <p>Companies: Accenture, IBM</p>
+        </div>`;
+    }
+
+    // ⚙️ Engineering
+    if(d === "eng"){
+        output += `
+        <div class="card">
+        <h3>Mechanical Engineer</h3>
+        <p>Skills: Design, AutoCAD</p>
+        <p>Companies: L&T, Tata Motors</p>
+        </div>
+
+        <div class="card">
+        <h3>Civil Engineer</h3>
+        <p>Skills: Construction</p>
+        <p>Companies: L&T</p>
+        </div>`;
+    }
+
+    // 📊 Commerce
+    if(d === "com"){
+        output += `
+        <div class="card">
+        <h3>Accountant</h3>
+        <p>Skills: Finance</p>
+        <p>Companies: Deloitte, PwC</p>
+        </div>
+
+        <div class="card">
+        <h3>Business Analyst</h3>
+        <p>Skills: Communication</p>
+        <p>Companies: Accenture</p>
+        </div>`;
+    }
+
+    // 🎨 Arts
+    if(d === "art"){
+        output += `
+        <div class="card">
+        <h3>Content Writer</h3>
+        <p>Skills: Writing</p>
+        <p>Companies: Media Companies</p>
+        </div>
+
+        <div class="card">
+        <h3>Journalist</h3>
+        <p>Skills: Communication</p>
+        <p>Companies: News Channels</p>
+        </div>`;
+    }
+
+    // 🔥 Skill Boost
+    if(s.includes("python") || s.includes("java")){
+        output += `
+        <div class="card">
+        <h3>Advanced Developer Role 🔥</h3>
+        <p>Your coding skill gives you advantage</p>
+        <p>Companies: Infosys, Capgemini</p>
+        </div>`;
+    }
+
+    if(s.includes("design")){
+        output += `
+        <div class="card">
+        <h3>UI/UX Designer</h3>
+        <p>Companies: Startups, IT Companies</p>
+        </div>`;
+    }
+
+    // 🟡 Final Output
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+</html>

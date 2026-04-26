@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Login</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+}
+
+.container {
+    width: 350px;
+    margin: 100px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #388E3C;
+}
+
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Admin Login</h2>
+
+<form onsubmit="return loginAdmin()">
+
+<input type="text" id="adminUser" placeholder="Admin Username" required>
+<input type="password" id="adminPass" placeholder="Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="links">
+<p>Back to <a href="login.html">User Login</a></p>
+</div>
+
+</div>
+
+<script>
+function loginAdmin(){
+
+let u = document.getElementById("adminUser").value;
+let p = document.getElementById("adminPass").value;
+
+// 👉 Change this if you want
+if(u === "admin" && p === "1234"){
+localStorage.setItem("admin","true");
+alert("Admin Login Successful ✅");
+window.location.href = "admin.html";
+return false;
+}
+else{
+alert("Invalid Admin ❌");
+return false;
+}
+}
+</script>
+
+</body>
+</html>
